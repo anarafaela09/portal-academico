@@ -1,0 +1,17 @@
+<section class="conteudo-pagina">
+  <h1>Cursos</h1>
+  <p class="subtitulo">Confira os cursos disponíveis no portal acadêmico.</p>
+  <div class="lista-cursos">
+    @for (curso of cursos; track curso.nome) {
+      <article class="card-curso">
+        <div class="topo-card"><span class="etiqueta" [class.inativo]="curso.situacao === 'Inativo'">{{ curso.situacao }}</span><span class="carga">{{ curso.cargaHoraria }} horas</span></div>
+        <h2>{{ curso.nome }}</h2>
+        <p>{{ curso.descricao }}</p>
+        <button type="button" (click)="verDetalhes(curso)">{{ cursoSelecionado?.nome === curso.nome ? 'Ocultar detalhes' : 'Ver detalhes' }}</button>
+        @if (cursoSelecionado?.nome === curso.nome) {
+          <div class="detalhes"><strong>Sobre o curso</strong><p>{{ curso.detalhes }}</p><p><strong>Situação:</strong> {{ curso.situacao }}</p></div>
+        }
+      </article>
+    }
+  </div>
+</section>

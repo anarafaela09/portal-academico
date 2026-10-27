@@ -1,0 +1,36 @@
+<section class="conteudo-pagina">
+  <h1>Alunos</h1>
+  <p class="subtitulo">Cadastre e gerencie os alunos da instituição.</p>
+
+  <form class="formulario" (ngSubmit)="cadastrarAluno()">
+    <label>Nome completo
+      <input type="text" name="nome" [(ngModel)]="nome" placeholder="Digite o nome completo" required>
+    </label>
+    <label>Matrícula
+      <input type="text" name="matricula" [(ngModel)]="matricula" placeholder="Ex.: 2026003" required>
+    </label>
+    <label>E-mail
+      <input type="email" name="email" [(ngModel)]="email" placeholder="aluno@email.com" required>
+    </label>
+    <label>Curso
+      <input type="text" name="curso" [(ngModel)]="curso" placeholder="Nome do curso" required>
+    </label>
+    <button type="submit">Cadastrar aluno</button>
+  </form>
+
+  <div class="tabela-area">
+    <h2>Alunos cadastrados ({{ alunos.length }})</h2>
+    <div class="tabela-scroll">
+      <table>
+        <thead><tr><th>Matrícula</th><th>Nome</th><th>E-mail</th><th>Curso</th><th>Ação</th></tr></thead>
+        <tbody>
+          @for (aluno of alunos; track aluno.matricula) {
+            <tr><td>{{ aluno.matricula }}</td><td>{{ aluno.nome }}</td><td>{{ aluno.email }}</td><td>{{ aluno.curso }}</td><td><button class="excluir" type="button" (click)="excluirAluno(aluno.matricula)">Excluir</button></td></tr>
+          } @empty {
+            <tr><td colspan="5" class="vazio">Nenhum aluno cadastrado.</td></tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
